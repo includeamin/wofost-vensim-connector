@@ -1,0 +1,92 @@
+{
+  "Crops": [
+    "Tomato",
+    "Chickpea",
+    "Rapeseed",
+    "Grainmaize",
+    "Apple",
+    "Rice",
+    "Wheat",
+    "Citrus"
+  ],
+  "Regions": [
+    "Finesk",
+    "Zarem",
+    "Tj dd",
+    "shah R D"
+  ],
+  "Coefficient": {
+    "Tomato": {
+      "Finesk": 0.02782949291,
+      "Zarem": 0.000234943,
+      "Tj dd": 0,
+      "shah R D": 0.0000351
+    },
+    "Chickpea": {
+      "Finesk": 0.000061,
+      "Zarem": 0,
+      "Tj dd": 0,
+      "shah R D": 0
+    },
+    "Rapeseed": {
+      "Finesk": 0.00013,
+      "Zarem": 0,
+      "Tj dd": 0,
+      "shah R D": 0
+    },
+    "Grainmaize": {
+      "Finesk": 0.00001,
+      "Zarem": 0.000017,
+      "Tj dd": 0.003685,
+      "shah R D": 0
+    },
+    "Apple": {
+      "Finesk": 0.02752754991,
+      "Zarem": 0.041570141,
+      "Tj dd": 0.03405931491,
+      "shah R D": 0.005011631
+    },
+    "Rice": {
+      "Finesk": 0.019067016,
+      "Zarem": 0.0097329009,
+      "Tj dd": 0.2196073774,
+      "shah R D": 0.0105982088
+    },
+    "Wheat": {
+      "Finesk": 0.009012,
+      "Zarem": 0,
+      "Tj dd": 0.017090164,
+      "shah R D": 0.000008
+    },
+    "Citrus": {
+      "Finesk": 0.0009526,
+      "Zarem": 0.001605887,
+      "Tj dd": 0.1293910401,
+      "shah R D": 0.00038915
+    }
+  },
+  "RegionsVariablesMap": {
+    "Zarem": {
+      "Apple": {
+        "Wofost": "Supply of apple zr",
+        "Vensim": "apple zr",
+        "KeyInVensimModel": "apple_zr"
+      },
+      "Rice": {
+        "Wofost": "supply of rice zr",
+        "Vensim": "rice zr",
+        "KeyInVensimModel": "rize_zr"
+      },
+      "Citrus": {
+        "Wofost": "Supply of citrus zr",
+        "Vensim": "citrus zr",
+        "KeyInVensimModel": "citrus_zr"
+      },
+      "Rapeseed": {
+        "Wofost": "Supply of rapeseed zr",
+        "Vensim": "rapeseed zr",
+        "KeyInVensimModel": "rapeseed_zr"
+      }
+    }
+  }
+}
