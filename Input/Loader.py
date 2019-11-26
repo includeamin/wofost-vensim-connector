@@ -10,6 +10,15 @@ class Loader:
     PathMaps: dict = {}
 
     @staticmethod
+    def path_maps() -> dict:
+        with open(f"{Loader.DataFolder}path_maps.json", 'r') as f:
+            return json.load(f)
+
+    @staticmethod
+    def meteo_maps() -> dict:
+        return MeteoNameMaps
+
+    @staticmethod
     def mkdir(path):
         path = f"{Loader.DataFolder}{path}"
         if not os.path.exists(path):
