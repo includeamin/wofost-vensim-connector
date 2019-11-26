@@ -7,7 +7,7 @@ import json
 
 class Loader:
     DataFolder = "./OutPut/"
-    PathMaps:dict ={}
+    PathMaps: dict = {}
 
     @staticmethod
     def mkdir(path):
@@ -17,13 +17,13 @@ class Loader:
 
     @staticmethod
     def save_path_map():
-        with open(f"{Loader.DataFolder}path_maps.json",'w') as f:
-            json.dump(Loader.PathMaps,f)
-
+        with open(f"{Loader.DataFolder}path_maps.json", 'w') as f:
+            json.dump(Loader.PathMaps, f)
 
     """
     init_dirs : init directories for crops
     """
+
     @staticmethod
     def init_dirs():
         # create regions directories
@@ -42,11 +42,10 @@ class Loader:
                     Loader.mkdir(f"{region}/{crop}/LOOKUP")
                     Loader.mkdir(f"{region}/{crop}/VensimModel")
                     # copy data each crop Crop file
-                    copyfile(f"./Input/Data/CROP/{CropNameMaps[crop]}",f"{Loader.DataFolder}{region}/{crop}/CROP/{CropNameMaps[crop]}")
+                    copyfile(f"./Input/Data/CROP/{CropNameMaps[crop]}",
+                             f"{Loader.DataFolder}{region}/{crop}/CROP/{CropNameMaps[crop]}")
 
                     # add path to path's maps
                     Loader.PathMaps[region][crop] = f'{Loader.DataFolder}{region}/{crop}'
         # save path to json file
         Loader.save_path_map()
-
-
