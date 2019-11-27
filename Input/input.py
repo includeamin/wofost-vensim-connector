@@ -8,7 +8,7 @@ RegionsVariablesMap = {
         "Rice": {
             "Wofost": "supply of rice zr",
             "Vensim": "rice zr",
-            "KeyInVensimModel": "rize_zr"
+            "KeyInVensimModel": "rice_zr"
         },
         "Citrus": {
             "Wofost": "Supply of citrus zr",
@@ -78,12 +78,12 @@ RegionsVariablesMap = {
         "Citrus": {
             "Wofost": "Supply of Citrus Tj",
             "Vensim": "Citrus Tj",
-            "KeyInVensimModel": "Citrus_Tj"
+            "KeyInVensimModel": "Citrs_Tj"
         },
         "Tomato": {
             "Wofost": "Supply of tomato tj",
             "Vensim": "tomato tj",
-            "KeyInVensimModel": "tomato_tj"
+            "KeyInVensimModel": "tomato_Tj"
         },
         "Wheat": {
             "Wofost": "Supply of wheat Tj",
@@ -171,7 +171,7 @@ Coefficient:dict = {
     "Tomato": {
         "Finesk": 0.02782949291,
         "Zarem": 0,
-        "Tj dd": 0.000234943,
+        "Tj dd": 0,
         "shah R D": 0.0000351
     },
     "Chickpea": {
@@ -183,7 +183,7 @@ Coefficient:dict = {
     "Rapeseed": {
         "Finesk": 0.00013,
         "Zarem": 0.000017,
-        "Tj dd": 0,
+        "Tj dd": 0.004354075,
         "shah R D": 0
     },
     "Grainmaize": {

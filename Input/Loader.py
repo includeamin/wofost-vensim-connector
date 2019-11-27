@@ -9,6 +9,8 @@ class Loader:
     DataFolder = "./OutPut/"
     PathMaps: dict = {}
 
+
+
     @staticmethod
     def get_coefficient():
         return Coefficient
