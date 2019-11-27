@@ -10,6 +10,10 @@ class Loader:
     PathMaps: dict = {}
 
     @staticmethod
+    def get_coefficient():
+        return Coefficient
+
+    @staticmethod
     def path_maps() -> dict:
         with open(f"{Loader.DataFolder}path_maps.json", 'r') as f:
             return json.load(f)
@@ -17,6 +21,14 @@ class Loader:
     @staticmethod
     def meteo_maps() -> dict:
         return MeteoNameMaps
+
+    @staticmethod
+    def get_regions() -> dict:
+        return Regions
+
+    @staticmethod
+    def get_regions_variables_map():
+        return RegionsVariablesMap
 
     @staticmethod
     def mkdir(path):
@@ -39,6 +51,8 @@ class Loader:
         for region in Regions:
             Loader.mkdir(region)
             Loader.PathMaps[region] = {}
+        # create vensim model dir
+        Loader.mkdir("VensimModel")
         # create each region's crops directories
         for crop in Coefficient.keys():
             for region in Coefficient[crop]:
@@ -49,7 +63,7 @@ class Loader:
                     Loader.mkdir(f"{region}/{crop}/CROP")
                     Loader.mkdir(f"{region}/{crop}/METEO")
                     Loader.mkdir(f"{region}/{crop}/LOOKUP")
-                    Loader.mkdir(f"{region}/{crop}/VensimModel")
+                    # Loader.mkdir(f"{region}/{crop}/VensimModel")
                     # copy data each crop Crop file
                     copyfile(f"./Input/Data/CROP/{CropNameMaps[crop]}",
                              f"{Loader.DataFolder}{region}/{crop}/CROP/{CropNameMaps[crop]}")

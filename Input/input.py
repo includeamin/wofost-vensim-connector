@@ -47,7 +47,7 @@ RegionsVariablesMap = {
             "Vensim": "grainmaize",
             "KeyInVensimModel": "grainmaize"
         },
-        "wheat": {
+        "Wheat": {
             "Wofost": "Supply of wheat",
             "Vensim": "wheat",
             "KeyInVensimModel": "wheat"
@@ -64,7 +64,7 @@ RegionsVariablesMap = {
         }
 
     },
-    "SHR Res": {
+    "shah R D": {
         "Rice": {
             "Wofost": "Supply of Rice Tj",
             "Vensim": "Rice Tj",
@@ -96,7 +96,7 @@ RegionsVariablesMap = {
             "KeyInVensimModel": "Rapeseed_Tj"
         }
     },
-    "Tj DD":
+    "Tj dd":
         {
             "Rice": {
                 "Wofost": "Sup- Rice tjj dd",
@@ -160,17 +160,18 @@ MeteoNameMaps = {
     "Chickpea": "SCK2",
     "Citrus": "SCT2",
     "Grainmaize": "SMZ2",
-    "Tomate": "SPT2",
+    "Tomato": "SPT2",
     "Rice": "SRC2",
     "Rapeseed": "SRP2",
-    "Wheat": "SWT2"
+    "Wheat": "SWT2",
+    "Sorgum":"SMZ2"
 }
 
 Coefficient:dict = {
     "Tomato": {
         "Finesk": 0.02782949291,
-        "Zarem": 0.000234943,
-        "Tj dd": 0,
+        "Zarem": 0,
+        "Tj dd": 0.000234943,
         "shah R D": 0.0000351
     },
     "Chickpea": {
@@ -181,13 +182,13 @@ Coefficient:dict = {
     },
     "Rapeseed": {
         "Finesk": 0.00013,
-        "Zarem": 0,
+        "Zarem": 0.000017,
         "Tj dd": 0,
         "shah R D": 0
     },
     "Grainmaize": {
         "Finesk": 0.00001,
-        "Zarem": 0.000017,
+        "Zarem": 0,
         "Tj dd": 0.003685,
         "shah R D": 0
     },
