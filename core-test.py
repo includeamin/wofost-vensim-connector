@@ -74,79 +74,15 @@ def create_parameters_that_requeired_in_vensim_output():
             for i in keys[item]:
                 key = str(keys[item][i]['Keys']["Wofost"])
                 new_dic.append(f'"""{key}"""')
-
-                # value = str(keys[item][i]['LookupPath']).replace('lookup', 'series')
-                # new_dic[key] = value
                 count += 1
     print("paramters that we want after running vensim", new_dic)
     return new_dic
 
 
-# data = convert_vensim_keys()
-# for item in data:
-#     lookups_data[item] = data[item]
-#
-# print(lookups_data)
-# model = pysd.read_vensim("./Input/Data/VensimModel/Annual data.mdl")
-# model = load("./Input/Data/VensimModel/Annual data.py")
+
 model = pysd.load('amin.py')
 
 stocks = model.run(return_columns=keys_in_vensim_output)
-# stocks.plot()
 stocks.to_csv("vensim_simualtion_output.csv")
-# print(stocks[keys_in_vensim_output[0]])
-for i in stocks[keys_in_vensim_output[0]]:
-    print(i)
 
-# print(model.components.rapeseed_tj(amin.time()+300))
-# time_in_lookup_data = [i for i in range(1,365)]
-# for i in range(1,365):
-#     print(i)
-# print(model.get_components())
-# with open("./OutPut/Tj dd/Wheat/LOOKUP/series.txt") as file:
-#     data = []
-#     for item in file.readlines():
-#         print('read',item)
-#         data.append(item)
-#
-# print(data)
-#
-# model.set_components(params={"wheat tjj dd":data})
-#
-# # print(model.doc())
-# import json
-#
-# with open('./OutPut/vensim_wofost_lookup.json', 'r') as j:
-#     keys = json.load(j)
-#
-# temp = {}
-# for item in keys:
-#     for i in keys[item]:
-#         # print(item, i, keys[item][i]['Keys']["Vensim"] ,str( keys[item][i]['LookupPath']).replace('lookup','series'))
-#         temp[keys[item][i]['Keys']["Vensim"]] = str(keys[item][i]['LookupPath']).replace('lookup', 'series')
-#         # for j in keys[item][i]:
-#         #     print(item,i,j)
-# return_columns = []
-# for d in temp:
-#     return_columns.append(d)
-#     with open(temp[d]) as file:
-#         content = file.readlines()
-#         content = [float(item) for item in content]
-#         print(content)
-#         try:
-#             model.set_components(params={d: temp[d]})
-#         except:
-#             print('exeption', d)
-#             continue
-# # return_columns.remove('Citrus Tj')
-#
-# stocks = model.run()
-# # print(model.doc())
-# # print(model.run())
-# import pandas
-#
-# # model.set_components("")
-# #
-# # stocks = model.run()
-#
-# stocks.to_csv('temp.csv')
+

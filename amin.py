@@ -6650,11 +6650,16 @@ def time_step():
     return 1
 
 
+
+
 _integ_abbn = functions.Integ(lambda: abbn_inflow() - abbn_eva() - abbn_outflow() - abbn_spill(),
                               lambda: 19)
 
+
 _integ_zr_reservoir = functions.Integ(lambda: zr_inflow() - zr_evap() - zr_outflow() - zr_spill(),
                                       lambda: 31)
+
+
 
 _integ_tajan_res_mcm = functions.Integ(
     lambda: tj_inflow() - tj_evaporation() - tj_outflow() - tj_spill(), lambda: 37.9)
