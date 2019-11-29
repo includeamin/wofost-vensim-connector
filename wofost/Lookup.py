@@ -30,6 +30,7 @@ class LookUp:
         input_min = min(input)
         input_max = max(input)
         # create body of lookup
+        import pysd
         lookup_body = ''
         count = 1
         for i in input:
@@ -37,7 +38,17 @@ class LookUp:
             count+=1
         # write lookup to file
         with open(f"{Loader.path_maps()[region][crop_name]}/LOOKUP/lookup.txt", 'w') as file:
-            file.write(f"[(1,{input_min}),({len(input)},{input_max})]{lookup_body}\n")
+             file.write(f"[(1,{input_min}),({len(input)},{input_max})]{lookup_body}\n")
+            # ?file.write(pysd.functions.lookup())
+
+        with open(f"{Loader.path_maps()[region][crop_name]}/LOOKUP/series.txt", 'w') as file:
+            for item in input:
+                item = str(item)+"\n"
+                file.write(item)
+            # file.writelines(input)
+
+                # for item in input:
+                #     file.writel(item)
             # todo : removed ( at first of lookup and ) at end of lookup
 
         print(region,crop_name)
@@ -99,10 +110,10 @@ class LookUp:
         # save vensim wofost and lookup map
         LookUp.save_vensim_wofost_lookup_maps()
         # create vensim model
-        LookUp.update_mode_regex()
-        model = pysd.read_vensim(f'{Loader.DataFolder}VensimModel/model.mdl')
-        print(model.doc())
-        stock = model.run()
-        stock.plot()
+        # LookUp.update_mode_regex()
+        # model = pysd.read_vensim(f'{Loader.DataFolder}VensimModel/model.mdl')
+        # print(model.doc())
+        # stock = model.run()
+        # stock.plot()
 
 

@@ -77,7 +77,7 @@ RegionsVariablesMap = {
         },
         "Citrus": {
             "Wofost": "Supply of Citrus Tj",
-            "Vensim": "Citrus Tj",
+            "Vensim": "citrs_tj Tj",
             "KeyInVensimModel": "Citrs_Tj"
         },
         "Tomato": {
@@ -171,7 +171,7 @@ Coefficient:dict = {
     "Tomato": {
         "Finesk": 0.02782949291,
         "Zarem": 0,
-        "Tj dd": 0,
+        "Tj dd": 0.000234943,
         "shah R D": 0.0000351
     },
     "Chickpea": {
@@ -184,11 +184,11 @@ Coefficient:dict = {
         "Finesk": 0.00013,
         "Zarem": 0.000017,
         "Tj dd": 0.004354075,
-        "shah R D": 0
+        "shah R D": 0.000003
     },
     "Grainmaize": {
         "Finesk": 0.00001,
-        "Zarem": 0,
+        "Zarem": 0, #0.000017,
         "Tj dd": 0.003685,
         "shah R D": 0
     },
@@ -217,8 +217,8 @@ Coefficient:dict = {
         "shah R D": 0.00038915
     },
     "Sorgum": {
-        "Finesk": 0,
-        "Zarem": 0,
+        "Finesk":0, #0.00001,
+        "Zarem":0,# 0.000017,
         "Tj dd": 0.01708,
         "shah R D": 0
     }
