@@ -8,9 +8,12 @@ import json
 class Loader:
     DataFolder = "./OutPut/"
     PathMaps: dict = {}
+
+    # return path of crop with region name and crop name
     @staticmethod
-    def get_path_with_region_crop(region,crop):
-         return f"{Loader.DataFolder}{region}/{crop}"
+    def get_path_with_region_crop(region, crop):
+        return f"{Loader.DataFolder}{region}/{crop}"
+    # get coefficients
     @staticmethod
     def get_coefficient():
         return Coefficient
@@ -74,7 +77,7 @@ class Loader:
                     Loader.PathMaps[region][crop] = f'{Loader.DataFolder}{region}/{crop}'
         # save path to json file
         Loader.save_path_map()
-
+    # detect region and crop name from name of vensim output
     @staticmethod
     def detect(name: str):
         name = name.lower()

@@ -4,6 +4,7 @@ from pysd import load
 from Input.input import keys_in_vensim_output
 from Input.Loader import Loader
 
+# lookups maps in the python model of vensim
 lookups_data = {
     "wheat_tjj_dd": [],
     "tomato_tjj_dd": [],
@@ -34,7 +35,7 @@ lookups_data = {
 
 }
 
-
+# create vensim keys that should read series [lookup] of any crop for updating lookups in python model of vensim
 def convert_vensim_keys():
     import json
 
@@ -91,6 +92,8 @@ def meteo_creator(ref_path, path, new_rain: list):
     with open(f"./Input/Data/CABOWE/{ref_path}") as f:
         data = f.readlines()
         start_Data_index = 0
+        # data of meteo start after second ------- we should change data after (+1) index after of --------
+        # the first row after ------- should not change
         for item in range(len(data)):
             if data[item].__contains__('------------------------------') and item > 0:
                 start_Data_index = item
@@ -100,9 +103,11 @@ def meteo_creator(ref_path, path, new_rain: list):
                 m.write(data[i])
             count = 0
             for item in range(start_Data_index + 2, len(data)):
+                # items splites with \t
                 line_data = data[item].split("\t")
                 line_data[-1] = f"{new_rain[count]}\n"  # data
                 count += 1
+                # joining items with \t again
                 line_data = str.join('\t', line_data)
                 # print(line_data)
                 m.write(line_data)

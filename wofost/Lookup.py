@@ -35,27 +35,30 @@ class LookUp:
         count = 1
         for i in input:
             lookup_body += f",({count},{i})"
-            count+=1
+            count += 1
         # write lookup to file
         with open(f"{Loader.path_maps()[region][crop_name]}/LOOKUP/lookup.txt", 'w') as file:
-             file.write(f"[(1,{input_min}),({len(input)},{input_max})]{lookup_body}\n")
-            # ?file.write(pysd.functions.lookup())
+            file.write(f"[(1,{input_min}),({len(input)},{input_max})]{lookup_body}\n")
+        # ?file.write(pysd.functions.lookup())
 
+        # in python model we need just series not full formated lookup
+        # so we create just series and store in series file of each crop
         with open(f"{Loader.path_maps()[region][crop_name]}/LOOKUP/series.txt", 'w') as file:
             for item in input:
-                item = str(item)+"\n"
+                item = str(item) + "\n"
                 file.write(item)
             # file.writelines(input)
 
-                # for item in input:
-                #     file.writel(item)
+            # for item in input:
+            #     file.writel(item)
             # todo : removed ( at first of lookup and ) at end of lookup
 
-        print(region,crop_name)
+        print(region, crop_name)
+        # create map of keys and series and loopup path
         LookUp.LookupPaths[region][crop_name] = {
             "LookupPath": f"{Loader.path_maps()[region][crop_name]}/LOOKUP/lookup.txt",
             "Keys": Loader.get_regions_variables_map()[region][crop_name],
-            "RefMeteo":f"{Loader.DataFolder}Data/CABOWE/{Loader.meteo_maps()[crop_name]}"
+            "RefMeteo": f"{Loader.DataFolder}Data/CABOWE/{Loader.meteo_maps()[crop_name]}"
         }
 
         LookUp.VensimKeysMap[Loader.get_regions_variables_map()[region][crop_name][
@@ -86,7 +89,6 @@ class LookUp:
         with open(f'{Loader.DataFolder}VensimModel/model.mdl', 'w', encoding='utf-8') as temp:
             temp.write(content)
 
-
     @staticmethod
     def create_look_ups():
         paths = Loader.path_maps()
@@ -94,7 +96,7 @@ class LookUp:
         crop_count = 0
         for region in paths.keys():
             for crop in paths[region].keys():
-                crop_count +=1
+                crop_count += 1
                 # get coefficient of each crop  in their region
                 coefficient = Loader.get_coefficient()[crop][region]
                 # get each crop rain
@@ -107,7 +109,7 @@ class LookUp:
                 LookUp.lookup_generator(new_rain, region, crop)
         print(crop_count)
         print(len(LookUp.VensimKeysMap))
-                # print(paths[region][crop], coefficient, new_rain)
+        # print(paths[region][crop], coefficient, new_rain)
         # save vensim wofost and lookup map
         LookUp.save_vensim_wofost_lookup_maps()
         # create vensim model
@@ -116,5 +118,3 @@ class LookUp:
         # print(model.doc())
         # stock = model.run()
         # stock.plot()
-
-
