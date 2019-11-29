@@ -2,6 +2,7 @@ import pysd
 import amin
 from pysd import load
 from Input.input import keys_in_vensim_output
+from Input.Loader import Loader
 
 lookups_data = {
     "wheat_tjj_dd": [],
@@ -38,6 +39,7 @@ def convert_vensim_keys():
     import json
 
     new_dic = {}
+    old_meteo_path_dics = {}
     with open("./OutPut/vensim_wofost_lookup.json") as file:
         keys = json.load(file)
         count = 0
@@ -45,6 +47,7 @@ def convert_vensim_keys():
             for i in keys[item]:
                 key = str(keys[item][i]['Keys']["Vensim"]).replace(" ", "_").lower()
                 value = str(keys[item][i]['LookupPath']).replace('lookup', 'series')
+                old_meteo_path_dics[key] = f"{Loader.DataFolder}Data/CABOWE/{Loader.meteo_maps()[i]}"
                 new_dic[key] = value
                 count += 1
 
@@ -54,6 +57,9 @@ def convert_vensim_keys():
 
     with open("./OutPut/key_value.json", 'w') as j:
         json.dump(new_dic, j)
+
+    with open("./OutPut/meteo_old_map.json", 'w') as f:
+        json.dump(old_meteo_path_dics, f)
 
     result = {}
     for item in new_dic:
@@ -79,10 +85,44 @@ def create_parameters_that_requeired_in_vensim_output():
     return new_dic
 
 
+def meteo_creator(ref_path, path, new_rain: list):
+    # wdp = CABOWeatherDataProvider(fname='SAP2', fpath="./Input/Data/CABOWE")
+
+    with open(f"{Loader.DataFolder}{ref_path}") as f:
+        data = f.readlines()
+        start_Data_index = 0
+        for item in range(len(data)):
+            if data[item].__contains__('------------------------------') and item > 0:
+                start_Data_index = item
+                break
+        with open(path, 'w') as m:
+            for i in range(start_Data_index + 2):
+                m.write(data[i])
+            count = 0
+            for item in range(start_Data_index + 2, len(data)):
+                line_data = data[item].split("\t")
+                line_data[-1] = f"{new_rain[count]}\n"  # data
+                count += 1
+                line_data = str.join('\t', line_data)
+                # print(line_data)
+                m.write(line_data)
+
+        # print(start_Data_index)
+    # wdp = CABOWeatherDataProvider(fname='new_meteo', fpath="./")
+    # print("reading")
+    # wdp = CABOWeatherDataProvider(fname='SAP2', fpath="./")
+    #
+    # print(wdp)
+
+
+def create_meteo_for_each_crop_of_each_region():
+    import json
+    with open("./OutPut/meteo_old.map.json",'r') as file:
+        old_meteo_map = json.load(file)
+
+
 
 model = pysd.load('amin.py')
 
 stocks = model.run(return_columns=keys_in_vensim_output)
 stocks.to_csv("vensim_simualtion_output.csv")
-
-

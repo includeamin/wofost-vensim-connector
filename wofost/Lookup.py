@@ -54,7 +54,8 @@ class LookUp:
         print(region,crop_name)
         LookUp.LookupPaths[region][crop_name] = {
             "LookupPath": f"{Loader.path_maps()[region][crop_name]}/LOOKUP/lookup.txt",
-            "Keys": Loader.get_regions_variables_map()[region][crop_name]
+            "Keys": Loader.get_regions_variables_map()[region][crop_name],
+            "RefMeteo":f"{Loader.DataFolder}Data/CABOWE/{Loader.meteo_maps()[crop_name]}"
         }
 
         LookUp.VensimKeysMap[Loader.get_regions_variables_map()[region][crop_name][

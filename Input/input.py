@@ -77,7 +77,7 @@ RegionsVariablesMap = {
         },
         "Citrus": {
             "Wofost": "Supply of Citrus Tj",
-            "Vensim": "citrs_tj Tj",
+            "Vensim": "citrs_tj",
             "KeyInVensimModel": "Citrs_Tj"
         },
         "Tomato": {
