@@ -151,7 +151,7 @@ CropNameMaps = {
     "Rice": "RIC501 - TJ.CAB",
     "Rapeseed": "SOYBEAN - TJ.W41",
     "Wheat": "WWH101 - TJ.CAB",
-    "Sorgum":"MAIZ - TJ.W41"
+    "Sorgum": "MAIZ - TJ.W41"
 
 }
 
@@ -164,10 +164,10 @@ MeteoNameMaps = {
     "Rice": "SRC2",
     "Rapeseed": "SRP2",
     "Wheat": "SWT2",
-    "Sorgum":"SMZ2"
+    "Sorgum": "SMZ2"
 }
 
-Coefficient:dict = {
+Coefficient: dict = {
     "Tomato": {
         "Finesk": 0.02782949291,
         "Zarem": 0,
@@ -188,7 +188,7 @@ Coefficient:dict = {
     },
     "Grainmaize": {
         "Finesk": 0.00001,
-        "Zarem": 0, #0.000017,
+        "Zarem": 0,  # 0.000017,
         "Tj dd": 0.003685,
         "shah R D": 0
     },
@@ -217,8 +217,8 @@ Coefficient:dict = {
         "shah R D": 0.00038915
     },
     "Sorgum": {
-        "Finesk":0, #0.00001,
-        "Zarem":0,# 0.000017,
+        "Finesk": 0,  # 0.00001,
+        "Zarem": 0,  # 0.000017,
         "Tj dd": 0.01708,
         "shah R D": 0
     }
@@ -232,3 +232,34 @@ Regions = {
     "shah R D"
 
 }
+
+keys_in_vensim_output = [
+    '"sup-Wheat tjj dd"',
+    '"sup-Citrus tjj dd"',
+    '"Sup- Rice tjj dd"',
+    '"sup-Apple tjj dd"',
+    '"sup-Sorgum tjdd"',
+    '"Sup-grainmaize Tjdd"',
+    '"Sup-tomato tjdd"',
+    '"sup-Rapeseed tjdd"',
+
+    "supply of tomato tj",
+    "supply of apple Tj",
+    "supply of Rice Tj",
+    "supply of citrus Tj",
+    "spply of wheat Tj",
+    "supply of rapeseed Tj",
+
+    "supply of rice zr",
+    "supply of citrus zr",
+    "supply of rapeseed zr",
+
+    "supply of wheat",
+    "supply of apple",
+    "supply of tomato",
+    "supply of grainmaize",
+    "supply of chickpea",
+    "supply of rice",
+    "supply of rapeseed",
+    "supply of citrus",
+]

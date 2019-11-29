@@ -1,6 +1,7 @@
 import pysd
 import amin
 from pysd import load
+from Input.input import keys_in_vensim_output
 
 lookups_data = {
     "wheat_tjj_dd": [],
@@ -51,7 +52,7 @@ def convert_vensim_keys():
         if item not in new_dic.keys():
             print(item, 'not exist')
 
-    with open("./key_value.json", 'w') as j:
+    with open("./OutPut/key_value.json", 'w') as j:
         json.dump(new_dic, j)
 
     result = {}
@@ -63,16 +64,40 @@ def convert_vensim_keys():
     return result
 
 
-data = convert_vensim_keys()
-for item in data:
-    lookups_data[item] = data[item]
+def create_parameters_that_requeired_in_vensim_output():
+    import json
+    new_dic = []
+    with open("./OutPut/vensim_wofost_lookup.json") as file:
+        keys = json.load(file)
+        count = 0
+        for item in keys:
+            for i in keys[item]:
+                key = str(keys[item][i]['Keys']["Wofost"])
+                new_dic.append(f'"""{key}"""')
 
-print(lookups_data)
+                # value = str(keys[item][i]['LookupPath']).replace('lookup', 'series')
+                # new_dic[key] = value
+                count += 1
+    print("paramters that we want after running vensim", new_dic)
+    return new_dic
+
+
+# data = convert_vensim_keys()
+# for item in data:
+#     lookups_data[item] = data[item]
+#
+# print(lookups_data)
 # model = pysd.read_vensim("./Input/Data/VensimModel/Annual data.mdl")
 # model = load("./Input/Data/VensimModel/Annual data.py")
-# model = pysd.load('amin.py')
-#
-# model.run()
+model = pysd.load('amin.py')
+
+stocks = model.run(return_columns=keys_in_vensim_output)
+# stocks.plot()
+stocks.to_csv("vensim_simualtion_output.csv")
+# print(stocks[keys_in_vensim_output[0]])
+for i in stocks[keys_in_vensim_output[0]]:
+    print(i)
+
 # print(model.components.rapeseed_tj(amin.time()+300))
 # time_in_lookup_data = [i for i in range(1,365)]
 # for i in range(1,365):

@@ -11,6 +11,35 @@ from pysd.py_backend.functions import cache
 from pysd.py_backend import functions
 
 time_in_lookup_data = [i for i in range(1, 366)]
+## added by includeamin to initialise lookup data
+def convert_vensim_keys():
+    import json
+
+    new_dic = {}
+    with open("./OutPut/vensim_wofost_lookup.json") as file:
+        keys = json.load(file)
+        count = 0
+        for item in keys:
+            for i in keys[item]:
+                key = str(keys[item][i]['Keys']["Vensim"]).replace(" ", "_").lower()
+                value = str(keys[item][i]['LookupPath']).replace('lookup', 'series')
+                new_dic[key] = value
+                count += 1
+
+    for item in lookups_data.keys():
+        if item not in new_dic.keys():
+            print(item, 'not exist')
+
+    with open("./OutPut/key_value.json", 'w') as j:
+        json.dump(new_dic, j)
+
+    result = {}
+    for item in new_dic:
+        with open(new_dic[item]) as lkf:
+            lookup = lkf.readlines()
+            lookup = [float(item) for item in lookup]
+            result[item] = lookup
+    return result
 
 lookups_data = {
     "wheat_tjj_dd": [],
@@ -41,6 +70,10 @@ lookups_data = {
     "wheat": []
 
 }
+data = convert_vensim_keys()
+for item in data:
+    lookups_data[item] = data[item]
+
 _subscript_dict = {}
 
 _namespace = {
