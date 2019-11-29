@@ -116,6 +116,7 @@ def meteo_creator(ref_path, path, new_rain: list):
 
 
 def create_new_meteo(model_output):
+    wofost_running_path_map = {}
     for item in model_output:
         data = model_output[item]
         data = [float(item) for item in data]
@@ -124,6 +125,8 @@ def create_new_meteo(model_output):
         new_meteo_path = Loader.get_path_with_region_crop(region, crop) + "/METEO/"+old_mete_name
         print(item, old_mete_name,new_meteo_path)
         meteo_creator(old_mete_name, new_meteo_path, data)
+
+
 
 
 # create_meteo_for_each_crop_of_each_region()
