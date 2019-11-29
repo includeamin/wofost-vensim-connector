@@ -88,7 +88,7 @@ def create_parameters_that_requeired_in_vensim_output():
 def meteo_creator(ref_path, path, new_rain: list):
     # wdp = CABOWeatherDataProvider(fname='SAP2', fpath="./Input/Data/CABOWE")
 
-    with open(f"{Loader.DataFolder}{ref_path}") as f:
+    with open(f"./Input/Data/CABOWE/{ref_path}") as f:
         data = f.readlines()
         start_Data_index = 0
         for item in range(len(data)):
@@ -115,14 +115,21 @@ def meteo_creator(ref_path, path, new_rain: list):
     # print(wdp)
 
 
-def create_meteo_for_each_crop_of_each_region():
-    import json
-    with open("./OutPut/meteo_old.map.json",'r') as file:
-        old_meteo_map = json.load(file)
+def create_new_meteo(model_output):
+    for item in model_output:
+        data = model_output[item]
+        data = [float(item) for item in data]
+        region, crop = Loader.detect(item)
+        old_mete_name = Loader.meteo_maps()[crop]
+        new_meteo_path = Loader.get_path_with_region_crop(region, crop) + "/METEO/"+old_mete_name
+        print(item, old_mete_name,new_meteo_path)
+        meteo_creator(old_mete_name, new_meteo_path, data)
 
 
+# create_meteo_for_each_crop_of_each_region()
 
 model = pysd.load('amin.py')
-
+# return_columns=keys_in_vensim_output
 stocks = model.run(return_columns=keys_in_vensim_output)
-stocks.to_csv("vensim_simualtion_output.csv")
+create_new_meteo(stocks)
+stocks.to_csv("./OutPut/vensim_simualtion_output.csv")

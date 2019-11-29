@@ -8,9 +8,9 @@ import json
 class Loader:
     DataFolder = "./OutPut/"
     PathMaps: dict = {}
-
-
-
+    @staticmethod
+    def get_path_with_region_crop(region,crop):
+         return f"{Loader.DataFolder}{region}/{crop}"
     @staticmethod
     def get_coefficient():
         return Coefficient
@@ -74,3 +74,37 @@ class Loader:
                     Loader.PathMaps[region][crop] = f'{Loader.DataFolder}{region}/{crop}'
         # save path to json file
         Loader.save_path_map()
+
+    @staticmethod
+    def detect(name: str):
+        name = name.lower()
+        # todo : get from input.py
+        region = ["Finesk", "zr", "Tjj dd", "Tjdd", "tj"]
+        region_map = {'': "Finesk", "zr": "Zarem", "tjj dd": "Tj dd", "tj": "shah R D", 'tjdd': 'Tj dd'}
+
+        crop = ["Tomato",
+                "Chickpea",
+                "rapeseed",
+                "Grainmaize",
+                "Apple",
+                "Rice",
+                "Wheat",
+                "Citrus",
+                "Sorgum"]
+        detected_crop = ''
+        for item in crop:
+            if name.__contains__(item.lower()):
+                detected_crop = item
+                break
+        detected_region = ''
+        for item in region:
+            if name.__contains__(item.lower()):
+                detected_region = item
+                break
+        # if detected_region == '':
+        #     detected_region = 'Finesk'
+
+        detected_region = region_map[detected_region.lower()]
+        return detected_region, detected_crop
+
+    # region, crop = detect('supply of rice zr')

@@ -156,15 +156,16 @@ CropNameMaps = {
 }
 
 MeteoNameMaps = {
-    "Apple": "SAP2",
-    "Chickpea": "SCK2",
-    "Citrus": "SCT2",
-    "Grainmaize": "SMZ2",
-    "Tomato": "SPT2",
-    "Rice": "SRC2",
-    "Rapeseed": "SRP2",
-    "Wheat": "SWT2",
-    "Sorgum": "SMZ2"
+    "Apple": "SAP2.014",
+    "Chickpea": "SCK2.014",
+    "Citrus": "SCT2.014",
+    "Grainmaize": "SMZ2.014",
+    "Tomato": "SPT2.014",
+    "Rice": "SRC2.014",
+    "Rapeseed": "SRP2.014",
+    "rapeseed": "SRP2.014",  # added for fixing key error
+    "Wheat": "SWT2.014",
+    "Sorgum": "SMZ2.014"
 }
 
 Coefficient: dict = {
@@ -253,6 +254,7 @@ keys_in_vensim_output = [
     "supply of rice zr",
     "supply of citrus zr",
     "supply of rapeseed zr",
+    "Supply of apple zr",
 
     "supply of wheat",
     "supply of apple",
@@ -265,17 +267,17 @@ keys_in_vensim_output = [
 ]
 
 WeatherContainerRanges = {"LAT": (-90., 90.),
-                               "LON": (-180., 180.),
-                               "ELEV": (-300, 6000),
-                               "IRRAD": (0., 40e30),
-                               "TMIN": (-50., 60.),
-                               "TMAX": (-50., 60.),
-                               "VAP": (0.06, 2000000.3),
-                               "RAIN": (0, 25),
-                               "E0": (0., 20000000.5),
-                               "ES0": (0., 2000000.5),
-                               "ET0": (0., 2000000.5),
-                               "WIND": (0., 100.),
-                               "SNOWDEPTH": (0., 250.),
-                               "TEMP": (-50., 60.),
-                               "TMINRA": (-50., 60.)}
+                          "LON": (-180., 180.),
+                          "ELEV": (-300, 6000),
+                          "IRRAD": (0., 40e30),
+                          "TMIN": (-50., 60.),
+                          "TMAX": (-50., 60.),
+                          "VAP": (0.06, 2000000.3),
+                          "RAIN": (0, 25),
+                          "E0": (0., 20000000.5),
+                          "ES0": (0., 2000000.5),
+                          "ET0": (0., 2000000.5),
+                          "WIND": (0., 100.),
+                          "SNOWDEPTH": (0., 250.),
+                          "TEMP": (-50., 60.),
+                          "TMINRA": (-50., 60.)}
