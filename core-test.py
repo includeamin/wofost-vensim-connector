@@ -35,6 +35,7 @@ lookups_data = {
 
 }
 
+
 # create vensim keys that should read series [lookup] of any crop for updating lookups in python model of vensim
 def convert_vensim_keys():
     import json
@@ -127,17 +128,49 @@ def create_new_meteo(model_output):
         data = [float(item) for item in data]
         region, crop = Loader.detect(item)
         old_mete_name = Loader.meteo_maps()[crop]
-        new_meteo_path = Loader.get_path_with_region_crop(region, crop) + "/METEO/"+old_mete_name
-        print(item, old_mete_name,new_meteo_path)
+        new_meteo_path = Loader.get_path_with_region_crop(region, crop) + "/METEO/" + old_mete_name
+        print(item, old_mete_name, new_meteo_path)
         meteo_creator(old_mete_name, new_meteo_path, data)
+        wofost_running_path_map["crop"] = new_meteo_path
 
+
+def running_wensim():
+    import json
+    from wofost.WofostClasse import Wofost
+    count = 0
+    vensim_out_put_map = {}
+    with open("./OutPut/vensim_wofost_lookup.json") as file:
+        data = json.load(file)
+        for region in data:
+            for crop in data[region]:
+                print(f"{region}-{crop} create parameters")
+                meteo_path = f"{Loader.DataFolder}{region}/{crop}/METEO/" #{Loader.meteo_maps()[crop]}
+                crop_path = f"{Loader.DataFolder}{region}/{crop}/CROP/{Loader.get_crop_map(crop)}"
+                argo_path = f"./Input/Data/Argo/{Loader.get_argo_by_crop_name(crop)}"
+                soil_path = "./Input/Data/Soil/EC1.NEW"
+                meteo_name = str(Loader.meteo_maps()[crop]).split('.')[0]
+                print('fsdfsef',meteo_name)
+                crop_name = crop
+                region_name = region
+                wave = Loader.Wav
+                co2 = Loader.Co2
+                count += 1
+
+                print(meteo_path)
+                print(f"{region}-{crop} start running model")
+                output_path =  Wofost(crop_path,argo_path,soil_path,meteo_path,meteo_name,wave,co2,region,crop_name).init_model()
+                print(f"{region}-{crop} running complete in path {output_path}")
+                vensim_out_put_map[f"{crop_name}-{region_name}"] = output_path
+
+        print("count of meteo file", count)
 
 
 
 # create_meteo_for_each_crop_of_each_region()
-
-model = pysd.load('amin.py')
-# return_columns=keys_in_vensim_output
-stocks = model.run(return_columns=keys_in_vensim_output)
-create_new_meteo(stocks)
-stocks.to_csv("./OutPut/vensim_simualtion_output.csv")
+#
+# model = pysd.load('amin.py')
+# # return_columns=keys_in_vensim_output
+# stocks = model.run(return_columns=keys_in_vensim_output)
+# create_new_meteo(stocks)
+# stocks.to_csv("./OutPut/vensim_simualtion_output.csv")
+running_wensim()

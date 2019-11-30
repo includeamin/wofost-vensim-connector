@@ -8,6 +8,12 @@ import json
 class Loader:
     DataFolder = "./OutPut/"
     PathMaps: dict = {}
+    Co2 = 360
+    Wav = 100
+
+    @staticmethod
+    def get_crop_map(crop):
+        return CropNameMaps[crop]
 
     # return path of crop with region name and crop name
     @staticmethod
@@ -61,6 +67,9 @@ class Loader:
 
     @staticmethod
     def init_dirs():
+        # create wofost output folder
+        Loader.mkdir('WofostOutPut/csv')
+        Loader.mkdir('WofostOutPut/map')
         # create regions directories
         for region in Regions:
             Loader.mkdir(region)

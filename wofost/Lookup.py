@@ -16,6 +16,7 @@ class LookUp:
     @staticmethod
     def get_weather_rain(name, path='./Input/Data/CABOWE'):
         # load meteo file with pcse
+        name = str(name).split('.')[0]
         weather_data = CABOWeatherDataProvider(fname=name, fpath=path)
         # export
         data = weather_data.export()
