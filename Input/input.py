@@ -281,3 +281,18 @@ WeatherContainerRanges = {"LAT": (-90., 90.),
                           "SNOWDEPTH": (0., 250.),
                           "TEMP": (-50., 60.),
                           "TMINRA": (-50., 60.)}
+
+ArgoMap = {
+    "Apple": "apple_calendar.agro",
+    "Chickpea": "chickpea_calendar.agro",
+    "Citrus": "citrus_calendar.agro",
+    "Grainmaiz": "grainmaiz_calendar.agro",
+    "Tomato": "potato_calendar.agro",
+    "Rice": "rice_calendar.agro",
+    "Rapeseed": "rapeseed_calendar.agro",
+    "Wheat": 'wheat_calendar.agro'
+}
+
+SoilMap = {
+    "Soil": "EC1.NEW"
+}

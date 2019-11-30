@@ -1,4 +1,4 @@
-from Input.input import Coefficient, CropNameMaps, MeteoNameMaps, RegionsVariablesMap, Regions
+from Input.input import Coefficient, CropNameMaps, MeteoNameMaps, RegionsVariablesMap, Regions, ArgoMap, SoilMap
 import os
 import pathlib
 from shutil import copyfile
@@ -13,6 +13,7 @@ class Loader:
     @staticmethod
     def get_path_with_region_crop(region, crop):
         return f"{Loader.DataFolder}{region}/{crop}"
+
     # get coefficients
     @staticmethod
     def get_coefficient():
@@ -46,6 +47,14 @@ class Loader:
         with open(f"{Loader.DataFolder}path_maps.json", 'w') as f:
             json.dump(Loader.PathMaps, f)
 
+    @staticmethod
+    def get_soil():
+        return SoilMap["Soil"]
+
+    @staticmethod
+    def get_argo_by_crop_name(crop_name):
+        return ArgoMap[crop_name]
+
     """
     init_dirs : init directories for crops
     """
@@ -77,6 +86,7 @@ class Loader:
                     Loader.PathMaps[region][crop] = f'{Loader.DataFolder}{region}/{crop}'
         # save path to json file
         Loader.save_path_map()
+
     # detect region and crop name from name of vensim output
     @staticmethod
     def detect(name: str):

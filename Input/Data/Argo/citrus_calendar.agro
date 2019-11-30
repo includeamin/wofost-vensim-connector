@@ -1,0 +1,13 @@
+Version: 1.0
+AgroManagement:
+- 2014-01-01:
+    CropCalendar:
+        crop_name: 'CIT301 - TJ'
+        variety_name: 'CIT301 - TJ.CAB'
+        crop_start_date: 2014-04-01
+        crop_start_type: emergence
+        crop_end_date: 2014-09-20
+        crop_end_type: harvest
+        max_duration: 260
+    TimedEvents: null
+    StateEvents: null
