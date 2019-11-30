@@ -79,7 +79,7 @@ def runModl(cropdName,soilName,wav,co2,lat,long,agroName,day=None):
     return  modelOutput
 
 def runModlO():
-    model = modelInit(cropdName="SUN1103- fc DI 75.CAB" , soilName="SR4 - Sari.NEW",wav=12 , co2=360 ,lat=36 , long=52
+    model = modelInit(cropdName="SUN1103- fc DI 75.CAB" , soilName="EC1.NEW",wav=12 , co2=360 ,lat=36 , long=52
                       , agroName="sugarbeet_calendar.agro")
     print("model running ... ")
     model.run_till_terminate()

@@ -286,7 +286,8 @@ ArgoMap = {
     "Apple": "apple_calendar.agro",
     "Chickpea": "chickpea_calendar.agro",
     "Citrus": "citrus_calendar.agro",
-    "Grainmaiz": "grainmaiz_calendar.agro",
+    "Grainmaize": "grainmaiz_calendar.agro",
+    "Sorgum": "grainmaiz_calendar.agro",
     "Tomato": "potato_calendar.agro",
     "Rice": "rice_calendar.agro",
     "Rapeseed": "rapeseed_calendar.agro",
@@ -294,5 +295,5 @@ ArgoMap = {
 }
 
 SoilMap = {
-    "Soil": "EC1.NEW"
+    "Soil": "EC11.NEW"
 }

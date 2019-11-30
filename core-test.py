@@ -143,24 +143,32 @@ def running_wensim():
         data = json.load(file)
         for region in data:
             for crop in data[region]:
-                print(f"{region}-{crop} create parameters")
+                # print(f"{region}-{crop} create parameters")
                 meteo_path = f"{Loader.DataFolder}{region}/{crop}/METEO/" #{Loader.meteo_maps()[crop]}
                 crop_path = f"{Loader.DataFolder}{region}/{crop}/CROP/{Loader.get_crop_map(crop)}"
                 argo_path = f"./Input/Data/Argo/{Loader.get_argo_by_crop_name(crop)}"
                 soil_path = "./Input/Data/Soil/EC1.NEW"
                 meteo_name = str(Loader.meteo_maps()[crop]).split('.')[0]
-                print('fsdfsef',meteo_name)
+                # print('fsdfsef',meteo_name)
                 crop_name = crop
                 region_name = region
                 wave = Loader.Wav
                 co2 = Loader.Co2
                 count += 1
 
-                print(meteo_path)
-                print(f"{region}-{crop} start running model")
-                output_path =  Wofost(crop_path,argo_path,soil_path,meteo_path,meteo_name,wave,co2,region,crop_name).init_model()
-                print(f"{region}-{crop} running complete in path {output_path}")
-                vensim_out_put_map[f"{crop_name}-{region_name}"] = output_path
+                # print(meteo_path)
+                # print(f"{region}-{crop} start running model")
+                try:
+                    output_path = Wofost(crop_path, argo_path, soil_path, meteo_path, meteo_name, wave, co2, region,
+                                         crop_name).init_model()
+                    vensim_out_put_map[f"{crop_name}-{region_name}"] = output_path
+
+                except Exception as ex:
+                    import traceback
+                    print(traceback.print_exc())
+                    print(crop_name,region,meteo_name,ex.args)
+                    continue
+                # print(f"{region}-{crop} running complete in path {output_path}")
 
         print("count of meteo file", count)
 

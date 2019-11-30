@@ -40,7 +40,7 @@ class Wofost:
         self.argo = YAMLAgroManagementReader(self.argo_path)
         self.weather = CABOWeatherDataProvider(fname=meteo_name, fpath=self.meteo_path)
         self.site = WOFOST71SiteDataProvider(WAV=wav, CO2=co2)
-        self.output_name = f'{region}-{crop_path}.csv'
+        self.output_name = f'./OutPut/WofostOutPut/csv/{crop_name}-{region}.csv'
 
     def save_out_put(self, name):
         pass
@@ -64,5 +64,5 @@ class Wofost:
         print("save model out put as e csv file with name of {} ")
         model_out_put = wofost.get_output()
         df = pd.DataFrame(model_out_put)
-        df.to_csv(f"./OutPut/WofostOutPut/{self.output_name}")
+        df.to_csv(f"{self.output_name}")
         return self.output_name
