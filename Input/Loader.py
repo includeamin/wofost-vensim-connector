@@ -12,6 +12,10 @@ class Loader:
     Wav = 100
 
     @staticmethod
+    def get_coefficient_depend_on_region_crop(region,crop):
+        return Coefficient[crop][region]
+
+    @staticmethod
     def get_crop_map(crop):
         return CropNameMaps[crop]
 

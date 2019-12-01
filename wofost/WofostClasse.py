@@ -36,7 +36,7 @@ class Wofost:
         # load component
         self.soil = CABOFileReader(self.soil_path)
         self.crop = CABOFileReader(self.crop_path)
-        print(self.argo_path)
+        print('path',self.argo_path)
         self.argo = YAMLAgroManagementReader(self.argo_path)
         self.weather = CABOWeatherDataProvider(fname=meteo_name, fpath=self.meteo_path)
         self.site = WOFOST71SiteDataProvider(WAV=wav, CO2=co2)
@@ -52,14 +52,16 @@ class Wofost:
                                        sitedata=self.site)
 
         print('create mode of {}')
-        print(self.crop_name)
-        print(self.argo_path)
+        print('55',self.crop_name)
+        print('56',self.argo_path)
         wofost = Wofost71_WLP_FD(parameters
                                  , self.weather,
                                  self.argo)
 
         print("runing model of {}")
-        wofost.run_till_terminate()
+        # wofost.run_till_terminate()
+        wofost.run(260)
+
 
         print("save model out put as e csv file with name of {} ")
         model_out_put = wofost.get_output()

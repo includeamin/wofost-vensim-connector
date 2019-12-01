@@ -87,7 +87,7 @@ def create_parameters_that_requeired_in_vensim_output():
     return new_dic
 
 
-def meteo_creator(ref_path, path, new_rain: list):
+def meteo_creator(ref_path, path, new_rain: list,coefficient):
     # wdp = CABOWeatherDataProvider(fname='SAP2', fpath="./Input/Data/CABOWE")
 
     with open(f"./Input/Data/CABOWE/{ref_path}") as f:
@@ -106,7 +106,7 @@ def meteo_creator(ref_path, path, new_rain: list):
             for item in range(start_Data_index + 2, len(data)):
                 # items splites with \t
                 line_data = data[item].split("\t")
-                line_data[-1] = f"{new_rain[count]}\n"  # data
+                line_data[-1] = f"{new_rain[count]/coefficient}\n"  # data
                 count += 1
                 # joining items with \t again
                 line_data = str.join('\t', line_data)
@@ -122,22 +122,35 @@ def meteo_creator(ref_path, path, new_rain: list):
 
 
 def create_new_meteo(model_output):
+    counter = 0
     wofost_running_path_map = {}
     for item in model_output:
+        print("-------------------------------------")
         data = model_output[item]
         data = [float(item) for item in data]
         region, crop = Loader.detect(item)
+        crop = str(crop[0]).upper()+crop[1:]
+        print('131',region,crop)
+        coefficient = Loader.get_coefficient_depend_on_region_crop(region,crop)
+        print("coefficient",coefficient)
         old_mete_name = Loader.meteo_maps()[crop]
         new_meteo_path = Loader.get_path_with_region_crop(region, crop) + "/METEO/" + old_mete_name
-        print(item, old_mete_name, new_meteo_path)
-        meteo_creator(old_mete_name, new_meteo_path, data)
+        print('135',item, old_mete_name, new_meteo_path)
+        meteo_creator(old_mete_name, new_meteo_path, data,coefficient)
         wofost_running_path_map["crop"] = new_meteo_path
+        counter +=1
+        print("-------------------------------------")
+
+    print("number of meteo created",counter)
+    print("---------------------------------------------------------------------")
 
 
 def running_wensim():
     import json
     from wofost.WofostClasse import Wofost
     count = 0
+    runned_count = 0
+    erro_count =0
     vensim_out_put_map = {}
     with open("./OutPut/vensim_wofost_lookup.json") as file:
         data = json.load(file)
@@ -162,23 +175,27 @@ def running_wensim():
                     output_path = Wofost(crop_path, argo_path, soil_path, meteo_path, meteo_name, wave, co2, region,
                                          crop_name).init_model()
                     vensim_out_put_map[f"{crop_name}-{region_name}"] = output_path
+                    runned_count+=1
 
                 except Exception as ex:
+                    erro_count+=1
                     import traceback
-                    print(traceback.print_exc())
+                    print('171',traceback.print_exc())
                     print(crop_name,region,meteo_name,ex.args)
                     continue
                 # print(f"{region}-{crop} running complete in path {output_path}")
 
         print("count of meteo file", count)
+        print("count of success simulation", runned_count)
+        print("count of errors",erro_count)
 
 
 
 # create_meteo_for_each_crop_of_each_region()
 #
-# model = pysd.load('amin.py')
+model = pysd.load('amin.py')
 # # return_columns=keys_in_vensim_output
-# stocks = model.run(return_columns=keys_in_vensim_output)
-# create_new_meteo(stocks)
-# stocks.to_csv("./OutPut/vensim_simualtion_output.csv")
+stocks = model.run(return_columns=keys_in_vensim_output)
+create_new_meteo(stocks)
+stocks.to_csv("./OutPut/vensim_simualtion_output.csv")
 running_wensim()
