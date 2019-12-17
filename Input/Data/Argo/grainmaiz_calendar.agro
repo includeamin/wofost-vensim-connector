@@ -2,12 +2,12 @@ Version: 1.0
 AgroManagement:
 - 2014-01-01:
     CropCalendar:
-        crop_name: 'MAIZ - TJ'
-        variety_name: 'MAIZ - TJ.CAB'
-        crop_start_date: 2014-04-01
-        crop_start_type: emergence
-        crop_end_date: 2014-09-20
+        crop_name: 'MAG201 -TJ'
+        variety_name: 'MAG201 -TJ.CAB'
+        crop_start_date: 2014-06-20
+        crop_start_type: sowing
+        crop_end_date: 2014-10-10
         crop_end_type: harvest
-        max_duration: 260
+        max_duration: 131
     TimedEvents: null
     StateEvents: null

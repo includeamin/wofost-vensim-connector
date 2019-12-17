@@ -26,8 +26,8 @@ IDSL     =   0      ! indicates whether pre-anthesis development depends
                     ! on temp. (=0), daylength (=1) , or both (=2)
 DLO      =   1.0    ! optimum daylength for development [hr]
 DLC      =   0.0    ! critical daylength (lower threshold) [hr]
-TSUM1    = 600.     ! temperature sum from emergence to anthesis [cel d]
-TSUM2    = 600.     ! temperature sum from anthesis to maturity [cel d]
+TSUM1    = 691.     ! temperature sum from emergence to anthesis [cel d]
+TSUM2    = 714.     ! temperature sum from anthesis to maturity [cel d]
 DTSMTB   =   0.00,    0.00,     ! daily increase in temp. sum 
              7.00,    0.00,     ! as function of av. temp. [cel; cel d]
             20.00,   13.00,
@@ -52,16 +52,16 @@ SPAN     =  32.       ! life span of leaves growing at 35 Celsius [d]
 TBASE    =   7.0      ! lower threshold temp. for ageing of leaves [cel]
 
 ** assimilation
-KDIFTB     =  0.0, 0.95,  ! extinction coefficient for diffuse visible light [-]
+KDIFTB     =  0.0, 0.60,  ! extinction coefficient for diffuse visible light [-]
               2.0, 0.60  ! as function of DVS
-EFFTB      =  0., 0.15,  ! light-use effic. single leaf [kg ha-1 hr-1 J-1 m2 s]
+EFFTB      =  0., 0.30,  ! light-use effic. single leaf [kg ha-1 hr-1 J-1 m2 s]
              40., 0.30   ! as function of daily mean temp.
 AMAXTB   =   0.00,   10.00,     ! max. leaf CO2 assim. rate
              1.72,   40.00,     ! function of DVS [-; kg ha-1 hr-1]
              2.00,    0.00
 TMPFTB   =   0.00,    0.00,     ! reduction factor of AMAX
              8.00,    0.00,     ! as function of av. temp. [cel; -]
-            45.00,    0.90,
+            51.00,    0.90,
             17.00,    1.00,
             26.00,    1.00,
             42.00,    0.65

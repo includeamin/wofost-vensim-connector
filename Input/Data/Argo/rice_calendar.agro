@@ -4,10 +4,10 @@ AgroManagement:
     CropCalendar:
         crop_name: 'RIC501 - TJ'
         variety_name: 'RIC501 - TJ.CAB'
-        crop_start_date: 2014-04-01
-        crop_start_type: emergence
-        crop_end_date: 2014-09-20
+        crop_start_date: 2014-04-20
+        crop_start_type: sowing
+        crop_end_date: 2014-08-10
         crop_end_type: harvest
-        max_duration: 260
+        max_duration: 149
     TimedEvents: null
     StateEvents: null

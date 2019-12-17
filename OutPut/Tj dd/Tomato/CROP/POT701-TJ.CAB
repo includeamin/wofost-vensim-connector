@@ -56,12 +56,12 @@ KDIFTB = 0.0, 2.00, ! extinction coefficient for diffuse visible light [-]
          2.0, 1.00  ! as function of DVS
 EFFTB  = 0.0, 0.35, ! light-use effic. single leaf [kg ha-1 hr-1 j-1 m2 s]
         40.0, 0.45  ! as function of daily mean temp.
-AMAXTB   =   0.00,   22.00,     ! max. leaf CO2 assim. rate
+AMAXTB   =   0.00,   9.00,     ! max. leaf CO2 assim. rate
              1.57,   30.00,     ! function of DVS [-; kg ha-1 hr-1]
              2.00,    0.00
 TMPFTB   =   0.00,    0.01,     ! reduction factor of AMAX
              3.00,    0.01,     ! as function of av. temp. [cel; -]
-            10.00,    0.75,
+            13.00,    0.75,
             20.00,    1.00,
             20.00,    1.00,
             26.00,    0.75,
